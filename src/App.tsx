@@ -7,16 +7,10 @@ import { IconClip } from "./assets";
 import { InputFile } from "./components/InputFile/InputFile";
 
 interface FormValues {
-  name: string;
-  birthday: any;
-  email: string;
   files: File[];
 }
 
 const INITIAL_VALUES: FormValues = {
-  name: "",
-  birthday: new Date(),
-  email: "",
   files: [],
 };
 
@@ -24,21 +18,10 @@ function App() {
   const {
     values,
     errors,
-    touched,
-    handleBlur,
-    handleChange,
-    handleSubmit,
     setValues,
   } = useFormik({
     initialValues: INITIAL_VALUES,
     validationSchema: yup.object({
-      name: yup.string().required("Required"),
-      birthday: yup
-        .date()
-        .nullable()
-        .required("Required")
-        .typeError("Invalid date"),
-      email: yup.string().email("Invalid email").required("Required"),
       files: yup.array().max(3, "Max limit exceded"),
     }),
     onSubmit: () => {},
@@ -47,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <InputFile
-        label="Add files: Max 5Mb"
+        label="Add Files"
         variant="outlined"
         icon={<IconClip style={{ width: 24, height: 24, fill: "gray" }} />}
         multiple={true}
@@ -69,7 +52,7 @@ function App() {
       />
 
       <InputFile
-        label="Add files: Max 5Mb"
+        label="Add Files"
         variant="standard"
         icon={<IconClip style={{ width: 24, height: 24, fill: "gray" }} />}
         multiple={true}
@@ -91,7 +74,7 @@ function App() {
       />
 
       <InputFile
-        label="Add files: Max 5Mb"
+        label="Add Files"
         variant="filled"
         icon={<IconClip style={{ width: 24, height: 24, fill: "gray" }} />}
         multiple={true}

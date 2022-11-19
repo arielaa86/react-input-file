@@ -1,6 +1,5 @@
-import { IconButton } from "@mui/material";
-import React, { forwardRef, useRef } from "react";
-import { Chip } from "./FileChip/Chip.styled";
+import { Container } from "@mui/system";
+import React, { useRef } from "react";
 import * as S from "./InputFile.styled";
 
 interface InputFileProps {
@@ -60,23 +59,15 @@ export const InputFile = ({
         InputProps={{
           startAdornment:
             files.length === 0 ? undefined : (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "75%",
-                  marginTop: 24,
-                  flexGrow: 1,
-                }}
-              >
+              <S.ChipContainer>
                 {files.map((file, index) => (
-                  <Chip
+                  <S.Chip
                     key={`${file.name}-${index}`}
                     label={file.name}
                     onDelete={() => onDelete(file)}
                   />
                 ))}
-              </div>
+              </S.ChipContainer>
             ),
           endAdornment: (
             <S.ButtonContainer>
